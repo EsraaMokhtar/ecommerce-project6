@@ -1,0 +1,19 @@
+
+
+<div class="text-center my-5">
+    <img class="rounded-3 mb-2" *ngIf="showImg" [src]="dataClass.imgURL" width="300" height="300">
+    <h2>{{dataClass.name}}</h2>
+</div>
+
+
+<h2>birth date is : {{nationalId |EgNational : "yyyy"}}</h2>
+<h2>birth date is : {{nationalId |EgNational : "fullDate"}}</h2>
+<h2>birth date is : {{nationalId |EgNational : "mm"}}</h2>
+<h2>birth date is : {{nationalId |EgNational : "yy"}}</h2>
+
+<h2>credit number is : {{creditNumber |CreditNumber}}</h2>
+
+<!-- <input type="text" placeholder="Enter the Credit number" #credit />
+<h2>credit number is : {{credit.value |CreditNumber}}</h2> -->
+
+

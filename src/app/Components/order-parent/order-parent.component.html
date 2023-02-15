@@ -1,0 +1,19 @@
+
+
+<div class="d-flex justify-content-center my-4">
+    <div class="w-50">
+        <h5 for="cat">Select Category: </h5>
+        <select name="cat" id="cat" [(ngModel)]="selectedCatID" class="form-control">
+            <option value="0">All</option>
+            <option *ngFor="let cat of catList" [value]="cat.id">{{cat.name}}</option>
+        </select>
+    </div>
+</div>
+
+<!-- <app-products [receivedCatID]="selectedCatID" ></app-products> -->
+<app-products [receivedCatID]="selectedCatID" (totalPriceChanged)="onTotalPrice($event)" ></app-products>
+
+<!-- <h1>Total Price in parent: {{receivedOrderTotalPrice}}</h1> -->
+
+
+<!-- <button class="btn btn-primary" (click)="getArray()">Get Array Products</button> -->

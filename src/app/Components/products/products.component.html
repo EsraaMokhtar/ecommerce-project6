@@ -1,0 +1,55 @@
+<table class="table m-2">
+  <thead>
+    <tr class="bg-dark text-light">
+      <th scope="col">No</th>
+      <th scope="col">Name</th>
+      <th scope="col">Image</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Details</th>
+      <th>Count</th>
+      <th>Buy</th>
+      <th>Delet</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <ng-container *ngFor="let prd of prdListOfCat;let i=index">
+      <tr
+        [ngStyle]="{'background-color':(prd.quantity==0)?'lightyellow':'lightgray','color':(prd.quantity==0)?'red':'blue'}">
+
+        <td>{{i+1}}</td>
+        <td>{{prd.name}}</td>
+        <td><img [src]="prd.imgURL" width="200" height="150"></td>
+
+        <td>
+          <ng-container [ngSwitch]="prd.quantity">
+            <ng-container *ngSwitchCase="0">Out Of Stock</ng-container>
+            <ng-container *ngSwitchCase="1">Last one Item</ng-container>
+            <ng-container *ngSwitchCase="2">Last 2 items</ng-container>
+            <ng-container *ngSwitchDefault>{{prd.quantity}}</ng-container>
+          </ng-container>
+        </td>
+        <td>{{prd.price}}</td>
+
+        <td>
+          <button class="btn btn-dark" (click)="openPrdDetails(prd.id)">Details</button>
+        </td>
+
+        <td><input type="number" class="form-control" #itemCount></td>
+        <td><button class="btn btn-success" [disabled]="prd.quantity==0"
+            (click)="upadteTotalPrice(prd.price,itemCount.value)">Buy</button></td>
+        <td>
+            <button class="btn btn-dark" (click)="DeleteProduct(prd.id)">Delete</button>
+        </td>
+
+        <td>
+          <button class="btn btn-dark" (click)="updateOneProduct(prd.id)">Edit</button>
+      </td>
+    </ng-container>
+  </tbody>
+</table>
+
+
+<h2 class="bg-light text-dark p-4">total price : {{orderTotalPrice | currency: 'USD':'symbol'}}</h2>
